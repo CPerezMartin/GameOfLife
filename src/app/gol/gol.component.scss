@@ -1,11 +1,12 @@
 table {
   border: 1px solid black;
-  background-color: darkslategrey;
+  background-color: darkgrey;
 }
 
 .cell{
   height: 5px;
   width: 5px;
+  border: none;
 
   &.active {
     background-color: cornflowerblue;

@@ -3,14 +3,16 @@
 <table>
   <tr *ngFor="let row of rows">
     <td *ngFor="let col of row.cols"
-      ngClass="{}"
+      [ngClass]="{'active': col.active}"
+      (click)="switchStatus( rows.indexOf(row), row.cols.indexOf(col))"
       class="cell">
   </td>
   </tr>
 </table>
 
 <div class="controls">
-  <button>Clear</button>
-  <button>Start</button>
-  <button>Stop</button>
+  <button (click)="clearGame">Clear</button>
+  <button (click)="playGame">Play</button>
+  <button (click)="stopGame">Stop</button>
+  <span>Generation {{generation}}</span>
 </div>

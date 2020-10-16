@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-gol',
@@ -10,16 +10,13 @@ export class GolComponent implements OnInit {
   rowMax = 25;
   colMax = 50;
   rows = [];
+  generation = 0;
+  timer;
 
-
-  constructor() {
-
-  }
+  constructor() { }
 
   ngOnInit(): void {
-   this.rows = this.createGrid(this.rowMax, this.colMax);
-   console.log('CONSOLE:: GolComponent -> ngOnInit -> this.rows', this.rows);
-   console.log('CONSOLE:: GolComponent -> ngOnInit -> this.rows.cols', this.rows[5].cols);
+    this.rows = this.createGrid(this.rowMax, this.colMax);
   }
 
   createGrid = (rows: number, cols: number) => {
@@ -38,4 +35,46 @@ export class GolComponent implements OnInit {
     return output;
   }
 
+  checkNeighbours = (row: number, col: number) => {
+    let count = 0;
+    for (let i = row - 1; i < row + 1; i++){
+      for (let j = row - 1; j < row + 1; j++){
+        if ((i !== row || j !== col) && (this.rows[i]) && (this.rows[i].cols[j])){
+          if (this.rows[i].cols[j].active) {
+            count++;
+          }
+      }
+    }
+  }
+    return count;
+  }
+
+  switchStatus = (i: number, j: number) => {
+  this.rows[i].cols[j].active = !this.rows[i].cols[j].active;
+  }
+
+  stopGame = () => {
+    clearInterval(this.timer);
+  }
+
+  clearGame = () => {
+    this.stopGame();
+    this.generation = 0;
+  }
+
+  playGame = () => {
+    this.timer = setInterval(() => {
+      this.generation++;
+      this.rows.forEach(row => {
+        const i = row;
+        console.log('CONSOLE:: GolComponent -> runGame -> i', i);
+        row.cols.forEach(col => {
+          const j = col;
+          // console.log('CONSOLE:: GolComponent -> runGame -> j', j)
+          col.neighbours = this.checkNeighbours(i, j);
+          // console.log('CONSOLE:: GolComponent -> runGame -> col', col)
+        });
+      });
+    }, 100);
+  }
 }
