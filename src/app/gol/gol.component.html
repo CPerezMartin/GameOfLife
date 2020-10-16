@@ -1,1 +1,16 @@
-<p>gol works!</p>
+<h1>Game of Life</h1>
+
+<table>
+  <tr *ngFor="let row of rows">
+    <td *ngFor="let col of row.cols"
+      ngClass="{}"
+      class="cell">
+  </td>
+  </tr>
+</table>
+
+<div class="controls">
+  <button>Clear</button>
+  <button>Start</button>
+  <button>Stop</button>
+</div>
