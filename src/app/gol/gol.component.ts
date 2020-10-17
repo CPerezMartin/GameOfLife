@@ -37,8 +37,8 @@ export class GolComponent implements OnInit {
 
   checkNeighbours = (row: number, col: number) => {
     let count = 0;
-    for (let i = row - 1; i < row + 1; i++){
-      for (let j = row - 1; j < row + 1; j++){
+    for (let i = row - 1; i < row + 2; i++){
+      for (let j = col - 1; j < col + 2; j++){
         if ((i !== row || j !== col) && (this.rows[i]) && (this.rows[i].cols[j])){
           if (this.rows[i].cols[j].active) {
             count++;
@@ -53,6 +53,7 @@ export class GolComponent implements OnInit {
   this.rows[i].cols[j].active = !this.rows[i].cols[j].active;
   }
 
+
   stopGame = () => {
     clearInterval(this.timer);
   }
@@ -60,21 +61,33 @@ export class GolComponent implements OnInit {
   clearGame = () => {
     this.stopGame();
     this.generation = 0;
+    this.rows.forEach(row => {
+      row.cols.forEach(col => {
+        col.active = false;
+      });
+    });
   }
 
   playGame = () => {
-    this.timer = setInterval(() => {
+    // this.timer = setInterval(() => {
       this.generation++;
-      this.rows.forEach(row => {
-        const i = row;
-        console.log('CONSOLE:: GolComponent -> runGame -> i', i);
-        row.cols.forEach(col => {
-          const j = col;
-          // console.log('CONSOLE:: GolComponent -> runGame -> j', j)
+      this.rows.forEach((row, rowIndex) => {
+        const i = rowIndex;
+        row.cols.forEach((col, colIndex) => {
+          const j = colIndex;
           col.neighbours = this.checkNeighbours(i, j);
-          // console.log('CONSOLE:: GolComponent -> runGame -> col', col)
+          // console.log('CONSOLE:: GolComponent -> //this.timer -> col.neighbours', col)
+          switch (col.neighbours) {
+            case  3:
+              col.active = true;
+              break;
+            case 2:
+              break;
+            default:
+              col.active = false;
+          }
         });
       });
-    }, 100);
+    // }, 100);
   }
 }
