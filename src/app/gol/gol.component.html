@@ -1,1 +1,18 @@
-<p>gol works!</p>
+<h1>Game of Life</h1>
+
+<table>
+  <tr *ngFor="let row of rows">
+    <td *ngFor="let col of row.cols"
+      [ngClass]="{'active': col.active}"
+      (click)="switchStatus( rows.indexOf(row), row.cols.indexOf(col))"
+      class="cell">
+  </td>
+  </tr>
+</table>
+
+<div class="controls">
+  <button (click)="clearGame()">Clear</button>
+  <button (click)="playGame()">Play</button>
+  <button (click)="stopGame()">Stop</button>
+  <span>Generation {{generation}}</span>
+</div>
