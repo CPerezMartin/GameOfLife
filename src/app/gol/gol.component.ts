@@ -69,7 +69,7 @@ export class GolComponent implements OnInit {
   }
 
   playGame = () => {
-    // this.timer = setInterval(() => {
+    this.timer = setInterval(() => {
       this.generation++;
       this.rows.forEach((row, rowIndex) => {
         const i = rowIndex;
@@ -88,6 +88,6 @@ export class GolComponent implements OnInit {
           }
         });
       });
-    // }, 100);
+    }, 100);
   }
 }
