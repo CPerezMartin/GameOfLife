@@ -49,10 +49,16 @@ export class GolComponent implements OnInit {
     return count;
   }
 
-  switchStatus = (i: number, j: number) => {
-  this.rows[i].cols[j].active = !this.rows[i].cols[j].active;
-  }
+  randomCells = (times: number) => {
+    for (let i = 0; i < times; i++){
+      const row = Math.floor(Math.random() * this.rowMax);
+      const col = Math.floor(Math.random() * this.colMax);
+      this.rows[row].cols[col].active ?
+        this.randomCells(1) :
+        this.rows[row].cols[col].active = true;
+    }
 
+  }
 
   stopGame = () => {
     clearInterval(this.timer);
@@ -67,6 +73,8 @@ export class GolComponent implements OnInit {
       });
     });
   }
+
+
 
   playGame = () => {
     this.timer = setInterval(() => {
