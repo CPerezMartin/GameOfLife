@@ -50,7 +50,7 @@ export class GolComponent implements OnInit {
   }
 
   randomCells = (times: number) => {
-    for (let i = 0; i <= times; i++){
+    for (let i = 0; i < times; i++){
       const row = Math.floor(Math.random() * this.rowMax);
       const col = Math.floor(Math.random() * this.colMax);
       this.rows[row].cols[col].active ?
