@@ -9,6 +9,7 @@ export class GolComponent implements OnInit {
 
   rowMax = 25;
   colMax = 50;
+  randomValue = 100;
   rows = [];
   generation = 0;
   timer;
@@ -35,7 +36,11 @@ export class GolComponent implements OnInit {
     return output;
   }
 
-  checkNeighbours = (row: number, col: number) => {
+  renderGrid = (rows: number, cols: number):void  => {
+    this.rows = this.createGrid(rows, cols);
+  }
+
+  checkNeighbours = (row: number, col: number): number => {
     let count = 0;
     for (let i = row - 1; i < row + 2; i++){
       for (let j = col - 1; j < col + 2; j++){
@@ -50,6 +55,8 @@ export class GolComponent implements OnInit {
   }
 
   randomCells = (times: number) => {
+    console.log('CONSOLE:: GolComponent -> randomCells -> times', times);
+    console.log('CONSOLE:: GolComponent -> randomValue', this.randomValue);
     for (let i = 0; i < times; i++){
       const row = Math.floor(Math.random() * this.rowMax);
       const col = Math.floor(Math.random() * this.colMax);
