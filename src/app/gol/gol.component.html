@@ -1,5 +1,17 @@
 <h1>Game of Life</h1>
 
+<div class="controls">
+  <button (click)="renderGrid(rowMax, colMax)">New Grid</button>
+  <input type="number" id="randomInput" min="0" step="1" max="rowMax * colMax" [value]="randomValue" (input)="randomValue = $event.target.value"/>
+  <input type="number" id="rowInput" min="0" step="1" [value]="rowMax" (input)="rowMax = $event.target.value"/>
+  <input type="number" id="colInput" min="0" step="1" [value]="colMax" (input)="colMax = $event.target.value"/>
+  <button (click)="randomCells(randomValue)">Random</button>
+  <button (click)="clearGame()">Clear</button>
+  <button (click)="playGame()">Play</button>
+  <button (click)="stopGame()">Stop</button>
+  <span>Generation {{generation}}</span>
+</div>
+
 <table>
   <tr *ngFor="let row of rows">
     <td *ngFor="let col of row.cols"
@@ -9,11 +21,3 @@
   </td>
   </tr>
 </table>
-
-<div class="controls">
-  <button (click)="randomCells(getElementById(randomInput).value)">Random</button><input type="number" id="randomInput" min="0" step="1" max="5" value="25"/>
-  <button (click)="clearGame()">Clear</button>
-  <button (click)="playGame()">Play</button>
-  <button (click)="stopGame()">Stop</button>
-  <span>Generation {{generation}}</span>
-</div>
