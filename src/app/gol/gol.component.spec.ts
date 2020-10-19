@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { GolComponent } from './gol.component';
 
 describe('GolComponent', () => {
@@ -8,6 +8,7 @@ describe('GolComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
       declarations: [ GolComponent ]
     })
     .compileComponents();
@@ -19,7 +20,17 @@ describe('GolComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create GoLComponent', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should renderGrid to be called at start', () => {
+    spyOn(component, 'renderGrid').and.callThrough();
+    expect(component.rows.length).toBeGreaterThan(0);
+    fixture.whenRenderingDone()
+    .then( () => {
+      expect(component.renderGrid).toHaveBeenCalledTimes(1);
+      expect(component.renderGrid).toHaveBeenCalledWith(component.rowMax, component.colMax);
+    });
   });
 });

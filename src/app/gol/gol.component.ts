@@ -17,7 +17,7 @@ export class GolComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.rows = this.createGrid(this.rowMax, this.colMax);
+    this.renderGrid(this.rowMax, this.colMax);
   }
 
   createGrid = (rows: number, cols: number) => {
@@ -36,7 +36,7 @@ export class GolComponent implements OnInit {
     return output;
   }
 
-  renderGrid = (rows: number, cols: number):void  => {
+  renderGrid = (rows: number, cols: number): void  => {
     this.rows = this.createGrid(rows, cols);
   }
 

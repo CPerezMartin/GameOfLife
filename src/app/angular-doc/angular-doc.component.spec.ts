@@ -10,22 +10,9 @@ describe('AngularDocComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', () => {
+  it('should create the angularDoc', () => {
     const fixture = TestBed.createComponent(AngularDocComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  // it(`should have as title 'GameOfLife'`, () => {
-  //   const fixture = TestBed.createComponent(AngularDocComponent);
-  //   const app = fixture.componentInstance;
-  //   expect(app.title).toEqual('GameOfLife');
-  // });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AngularDocComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('GameOfLife app is running!');
+    const angularDoc = fixture.componentInstance;
+    expect(angularDoc).toBeTruthy();
   });
 });
