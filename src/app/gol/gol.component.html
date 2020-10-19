@@ -11,8 +11,8 @@
 </table>
 
 <div class="controls">
+  <button (click)="randomCells(getElementById(randomInput).value)">Random</button><input type="number" id="randomInput" min="0" step="1" max="5" value="25"/>
   <button (click)="clearGame()">Clear</button>
-  <button (click)="randomCells(25)">Random</button>
   <button (click)="playGame()">Play</button>
   <button (click)="stopGame()">Stop</button>
   <span>Generation {{generation}}</span>

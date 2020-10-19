@@ -35,7 +35,7 @@ export class GolComponent implements OnInit {
     return output;
   }
 
-  checkNeighbours = (row: number, col: number) => {
+  checkNeighbours = (row: number, col: number): number => {
     let count = 0;
     for (let i = row - 1; i < row + 2; i++){
       for (let j = col - 1; j < col + 2; j++){
