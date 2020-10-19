@@ -2,10 +2,10 @@
 
 <div class="controls">
   <button (click)="renderGrid(rowMax, colMax)">New Grid</button>
-  <input type="number" id="randomInput" min="0" step="1" max="rowMax * colMax" [value]="randomValue" (input)="randomValue = $event.target.value"/>
   <input type="number" id="rowInput" min="0" step="1" [value]="rowMax" (input)="rowMax = $event.target.value"/>
   <input type="number" id="colInput" min="0" step="1" [value]="colMax" (input)="colMax = $event.target.value"/>
   <button (click)="randomCells(randomValue)">Random</button>
+  <input type="number" id="randomInput" min="0" step="1" max="rowMax * colMax" [value]="randomValue" (input)="randomValue = $event.target.value"/>
   <button (click)="clearGame()">Clear</button>
   <button (click)="playGame()">Play</button>
   <button (click)="stopGame()">Stop</button>

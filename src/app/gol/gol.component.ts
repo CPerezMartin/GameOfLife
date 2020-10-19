@@ -7,9 +7,9 @@ import { Component, OnInit} from '@angular/core';
 })
 export class GolComponent implements OnInit {
 
-  rowMax = 25;
+  rowMax = 50;
   colMax = 50;
-  randomValue = 100;
+  randomValue = 200;
   rows = [];
   generation = 0;
   timer;
