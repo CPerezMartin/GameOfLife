@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GolComponent } from './gol.component';
 
@@ -34,7 +34,7 @@ describe('GolComponent', () => {
     });
   });
 
-  fit('should createGrid to generate correct number of cells', () => {
+  xit('should createGrid to generate correct number of cells', () => {
     const cols = 5;
     const rows = 5;
     spyOn(component, 'createGrid').and.callThrough();
@@ -46,5 +46,83 @@ describe('GolComponent', () => {
       expect(component.rows.length).toEqual(rows);
       expect(component.rows[0].col.length).toEqual(cols);
     });
+  });
+
+  it('should random cells generate proper active cells', () => {
+    const MOCK_TIMES = 2;
+    let control = 0;
+    spyOn(component, 'randomCells').and.callThrough();
+    component.randomCells(MOCK_TIMES);
+    component.rows.forEach(row => {
+      row.cols.forEach( col => {
+        if (col.active === true) {
+          control++;
+        }
+      });
+    });
+    expect(control).toEqual(MOCK_TIMES);
+  });
+
+  it('should stopGame call clearInterval', () => {
+    spyOn(component, 'stopGame').and.callThrough();
+    component.stopGame();
+    expect((component.timer)).toBeFalsy();
+  });
+
+  it('should playGame set interval', () => {
+    spyOn(component, 'playGame').and.callThrough();
+    component.playGame();
+    expect((component.timer)).toBeTruthy();
+  });
+
+  xit('should playGame increment generation', () => {
+    component.renderGrid(5, 5);
+    spyOn(component, 'playGame').and.callThrough();
+    component.playGame();
+    expect((component.generation)).toBeGreaterThan(0);
+  });
+
+  it('should checkNeighbours count 3 neighbours', () => {
+    component.renderGrid(3, 3);
+    component.rows[0].cols.forEach(col => {
+      col.active = true;
+    });
+    spyOn(component, 'checkNeighbours').and.callThrough();
+    const CONTROL = component.checkNeighbours(1, 1);
+    expect(CONTROL).toEqual(3);
+  });
+
+  it('should checkNeighbours count  neighbours', () => {
+    component.renderGrid(3, 3);
+    component.rows[0].cols.forEach(col => {
+      col.active = true;
+    });
+    spyOn(component, 'checkNeighbours').and.callThrough();
+    const CONTROL = component.checkNeighbours(2, 2);
+    expect(CONTROL).toEqual(0);
+  });
+
+  it('should clearGame reset data', () => {
+    component.renderGrid(3, 3);
+    component.generation = 5;
+    let CONTROL = 0;
+    component.rows.forEach(row => {
+      row.cols.forEach(col => {
+        col.active = true;
+      });
+    });
+    // spyOn(component, 'clearGame').and.callThrough();
+    spyOn(component, 'stopGame');
+    component.clearGame();
+    component.rows.forEach(row => {
+      row.cols.forEach(col => {
+        if (col.active) {
+          CONTROL++;
+        }
+      });
+    });
+    expect(component.stopGame).toHaveBeenCalled();
+    expect(component.generation).toEqual(0);
+    expect(CONTROL).toEqual(0);
   });
 });
