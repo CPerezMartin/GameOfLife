@@ -55,8 +55,6 @@ export class GolComponent implements OnInit {
   }
 
   randomCells = (times: number) => {
-    console.log('CONSOLE:: GolComponent -> randomCells -> times', times);
-    console.log('CONSOLE:: GolComponent -> randomValue', this.randomValue);
     for (let i = 0; i < times; i++){
       const row = Math.floor(Math.random() * this.rowMax);
       const col = Math.floor(Math.random() * this.colMax);
@@ -64,7 +62,6 @@ export class GolComponent implements OnInit {
         this.randomCells(1) :
         this.rows[row].cols[col].active = true;
     }
-
   }
 
   stopGame = () => {
