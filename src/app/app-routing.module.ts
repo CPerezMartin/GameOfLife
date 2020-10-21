@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 import { GolComponent } from './gol/gol.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularDocComponent } from './angular-doc/angular-doc.component';
@@ -16,6 +17,8 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
+    BrowserModule,
+    RouterModule,
     RouterModule.forRoot(routes)
   ],
   exports: [ RouterModule ]
