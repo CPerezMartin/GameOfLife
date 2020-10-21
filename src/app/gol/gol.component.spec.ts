@@ -34,7 +34,7 @@ describe('GolComponent', () => {
     });
   });
 
-  xit('should createGrid to generate correct number of cells', () => {
+  it('should createGrid to generate correct number of cells', () => {
     const cols = 5;
     const rows = 5;
     spyOn(component, 'createGrid').and.callThrough();
@@ -75,13 +75,6 @@ describe('GolComponent', () => {
     expect((component.timer)).toBeTruthy();
   });
 
-  xit('should playGame increment generation', () => {
-    component.renderGrid(5, 5);
-    spyOn(component, 'playGame').and.callThrough();
-    component.playGame();
-    expect((component.generation)).toBeGreaterThan(0);
-  });
-
   it('should checkNeighbours count 3 neighbours', () => {
     component.renderGrid(3, 3);
     component.rows[0].cols.forEach(col => {
@@ -111,7 +104,6 @@ describe('GolComponent', () => {
         col.active = true;
       });
     });
-    // spyOn(component, 'clearGame').and.callThrough();
     spyOn(component, 'stopGame');
     component.clearGame();
     component.rows.forEach(row => {
