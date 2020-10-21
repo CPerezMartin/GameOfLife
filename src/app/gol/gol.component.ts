@@ -17,7 +17,7 @@ export class GolComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.rows = this.createGrid(this.rowMax, this.colMax);
+    this.renderGrid(this.rowMax, this.colMax);
   }
 
   createGrid = (rows: number, cols: number) => {
@@ -36,7 +36,7 @@ export class GolComponent implements OnInit {
     return output;
   }
 
-  renderGrid = (rows: number, cols: number):void  => {
+  renderGrid = (rows: number, cols: number): void  => {
     this.rows = this.createGrid(rows, cols);
   }
 
@@ -55,8 +55,6 @@ export class GolComponent implements OnInit {
   }
 
   randomCells = (times: number) => {
-    console.log('CONSOLE:: GolComponent -> randomCells -> times', times);
-    console.log('CONSOLE:: GolComponent -> randomValue', this.randomValue);
     for (let i = 0; i < times; i++){
       const row = Math.floor(Math.random() * this.rowMax);
       const col = Math.floor(Math.random() * this.colMax);
@@ -64,7 +62,6 @@ export class GolComponent implements OnInit {
         this.randomCells(1) :
         this.rows[row].cols[col].active = true;
     }
-
   }
 
   stopGame = () => {

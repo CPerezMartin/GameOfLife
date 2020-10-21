@@ -16,9 +16,15 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, './coverage/GameOfLife'),
+      dir: require('path').join(__dirname, '../../coverage/GameOfLife'),
       reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 80,
+        lines: 80,
+        branches: 70,
+        functions: 80
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
