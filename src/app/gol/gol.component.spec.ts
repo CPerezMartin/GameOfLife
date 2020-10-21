@@ -85,7 +85,7 @@ describe('GolComponent', () => {
     expect(CONTROL).toEqual(3);
   });
 
-  it('should checkNeighbours count  neighbours', () => {
+  it('should checkNeighbours count 0 neighbours', () => {
     component.renderGrid(3, 3);
     component.rows[0].cols.forEach(col => {
       col.active = true;
