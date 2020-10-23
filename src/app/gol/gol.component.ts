@@ -64,6 +64,10 @@ export class GolComponent implements OnInit {
     }
   }
 
+  switchStatus = (i: number, j: number) => {
+    this.rows[i].cols[j].active = !this.rows[i].cols[j].active;
+  }
+
   stopGame = () => {
     clearInterval(this.timer);
   }

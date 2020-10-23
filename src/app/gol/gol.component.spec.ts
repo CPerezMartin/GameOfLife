@@ -92,6 +92,14 @@ describe('GolComponent', () => {
     expect(CONTROL).toEqual(0);
   });
 
+  it('should switchstatus switch cell status', () => {
+    component.renderGrid(3, 3);
+    component.switchStatus(0, 0);
+    expect(component.rows[0].cols[0].active).toBeTrue();
+    component.switchStatus(0, 0);
+    expect(component.rows[0].cols[0].active).toBeFalse();
+  });
+
   it('should stopGame call clearInterval', () => {
     component.stopGame();
     expect((component.timer)).toBeFalsy();
