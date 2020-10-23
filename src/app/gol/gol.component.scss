@@ -3,12 +3,33 @@ table {
   background-color: darkgrey;
 }
 
-.cell{
+.cell {
   height: 5px;
   width: 5px;
   border: none;
 
   &.active {
     background-color: cornflowerblue;
+  }
+}
+
+.counter {
+  font-size: large;
+}
+
+.controls {
+  margin: 0.35rem 0;
+  input {
+    width: 4em;
+    margin: 0 0.2em;
+  }
+
+  #gridCtrl {
+    margin-bottom: 0.2rem;
+  }
+
+  .label {
+    margin: 0;
+    margin-left: 0.5em;
   }
 }

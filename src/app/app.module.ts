@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { GolComponent } from './gol/gol.component';
@@ -14,6 +15,7 @@ import { AngularDocComponent } from './angular-doc/angular-doc.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule
   ],
   providers: [],
