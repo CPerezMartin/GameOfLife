@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GolComponent } from './gol.component';
 
@@ -51,7 +51,6 @@ describe('GolComponent', () => {
   it('should random cells generate proper active cells', () => {
     const MOCK_TIMES = 2;
     let control = 0;
-    spyOn(component, 'randomCells').and.callThrough();
     component.randomCells(MOCK_TIMES);
     component.rows.forEach(row => {
       row.cols.forEach( col => {
@@ -63,16 +62,16 @@ describe('GolComponent', () => {
     expect(control).toEqual(MOCK_TIMES);
   });
 
-  it('should stopGame call clearInterval', () => {
-    spyOn(component, 'stopGame').and.callThrough();
-    component.stopGame();
-    expect((component.timer)).toBeFalsy();
-  });
-
   it('should playGame set interval', () => {
-    spyOn(component, 'playGame').and.callThrough();
     component.playGame();
     expect((component.timer)).toBeTruthy();
+  });
+
+  it('should generation 5 in 500milliseconds', () => {
+    jasmine.clock().install();
+    component.playGame();
+    jasmine.clock().tick(500);
+    expect((component.generation)).toEqual(5);
   });
 
   it('should checkNeighbours count 3 neighbours', () => {
@@ -80,7 +79,6 @@ describe('GolComponent', () => {
     component.rows[0].cols.forEach(col => {
       col.active = true;
     });
-    spyOn(component, 'checkNeighbours').and.callThrough();
     const CONTROL = component.checkNeighbours(1, 1);
     expect(CONTROL).toEqual(3);
   });
@@ -90,9 +88,13 @@ describe('GolComponent', () => {
     component.rows[0].cols.forEach(col => {
       col.active = true;
     });
-    spyOn(component, 'checkNeighbours').and.callThrough();
     const CONTROL = component.checkNeighbours(2, 2);
     expect(CONTROL).toEqual(0);
+  });
+
+  it('should stopGame call clearInterval', () => {
+    component.stopGame();
+    expect((component.timer)).toBeFalsy();
   });
 
   it('should clearGame reset data', () => {
